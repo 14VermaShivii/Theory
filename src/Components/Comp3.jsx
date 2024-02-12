@@ -1,6 +1,7 @@
-export function Comp3(props) {
-    return <>
-    <h1>{props.text}</h1>
-    </>
+import { useContext } from 'react'
+import { OtherContext } from './OtherContext';
+export function Comp3() {
+    const context = useContext(OtherContext)
+    return <div>{context.data}</div>
     
 }

@@ -7,12 +7,15 @@ import { Readmore } from './Readmore'
 import { Comp1 } from './Components/Comp1';
 import { MyComponent } from './Components/MyComponent';
 import { MyContext } from './Components/MyContext';
-
+import { Comp4 } from './Components/Comp4';
+import { OtherContext } from './Components/OtherContext';
+import {Comp2 } from './Components/Comp2';
+import {Comp3 } from './Components/Comp3';
 
 function App() {
   const [count, setCount] = useState(0)
   const [Name, setName] = useState("Shivani")
-  const [text,SetText]=useState()
+  const [text, SetText]=useState()
 
 
 
@@ -42,12 +45,23 @@ function App() {
     
   return (
     <>
-      <Comp1 text="john" />
+    <MyContext.Provider value={{data:"Hi,I am shared new data"}}>
+      <Comp1 />
+<Comp4 />
+    </MyContext.Provider>
 
-      const [text ,SetText]=useState()
-      <MyContext.Provider value={{ text, SetText }}>
+<OtherContext.Provider value={{data:"here is a othercontext page"}}>
+  <Comp2 />
+  <Comp3 />
+</OtherContext.Provider>
+
+
+      {/* <Comp1 text="john" /> */}
+
+      {/* const [text ,SetText]=useState() */}
+      {/* <MyContext.Provider value={{ text, SetText }}>
         <MyComponent />
-      </MyContext.Provider>
+      </MyContext.Provider> */}
 
       {/* <List name="sam" age="20"/>
    <List name="shivii" age="14"/>

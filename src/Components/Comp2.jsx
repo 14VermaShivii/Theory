@@ -1,8 +1,7 @@
-import { Comp3 } from "./Comp3"
-export function Comp2(props) {
-    return <>
-    <h1>{props.text}</h1>
-    <Comp3 text="payu" />
-    </>
+import { useContext } from 'react'
+import { OtherContext } from './OtherContext';
+export function Comp2() {
+    const context = useContext(OtherContext)
+    return <div>{context.data}</div>
     
 }
