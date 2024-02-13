@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState,useRef } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -11,13 +11,28 @@ import { Comp4 } from './Components/Comp4';
 import { OtherContext } from './Components/OtherContext';
 import {Comp2 } from './Components/Comp2';
 import {Comp3 } from './Components/Comp3';
+import { Counter1 } from './Components/Counter1';
+import { Counter2 } from './Components/Counter2';
+import useTheme from './Hooks/useTheme';
+
 
 function App() {
   const [count, setCount] = useState(0)
   const [Name, setName] = useState("Shivani")
-  const [text, SetText]=useState()
+  const [text,setText]=useState("Login")
+  const refInput = useRef()
+  const {theme,switchTheme}=useTheme()
+  useEffect(()=>{
+    document.body.style.backgroundColor=theme
+  })
 
-
+function changecolor() {
+  refInput.current.style.backgroundColor="skyblue"  
+}
+function reset() {
+  setText(" ")
+  refInput.current.focus()
+}
 
 
 
@@ -45,7 +60,16 @@ function App() {
     
   return (
     <>
-    <MyContext.Provider value={{data:"Hi,I am shared new data"}}>
+<input type= "text" ref={refInput} value={text} onChange={(e)=> setText(e.target.value)}/>
+<button onClick={changecolor}>changecolor</button>
+<button onClick={reset}>Reset</button>
+<button type="button" onClick={switchTheme}>switchTheme</button>
+
+<Counter1 />
+<Counter2 />
+<useTheme />
+
+    <MyContext.Provider value={{text,setText}}>
       <Comp1 />
 <Comp4 />
     </MyContext.Provider>
